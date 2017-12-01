@@ -6,5 +6,6 @@ public interface DatabaseSubscriber {
 
     void onDBReadExecute(List results);
     void onDBInsertNew(long id);
+    void onNoteRetrieve(NoteEntry note);
 
 }

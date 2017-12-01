@@ -2,6 +2,7 @@ package com.lrdwhyt.notepad.notes;
 
 import com.lrdwhyt.notepad.DatabaseSubscriber;
 import com.lrdwhyt.notepad.Model;
+import com.lrdwhyt.notepad.NoteEntry;
 
 import java.util.List;
 
@@ -20,7 +21,14 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
 
     @Override
     public void onDeleteSelectedNotesClick(List noteIds) {
+    }
 
+    @Override
+    public void onNoteRetrieve(NoteEntry note) {
+    }
+
+    @Override
+    public void onDBInsertNew(long id) {
     }
 
     @Override

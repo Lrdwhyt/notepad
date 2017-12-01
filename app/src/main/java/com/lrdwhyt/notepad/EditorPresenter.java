@@ -19,12 +19,16 @@ public class EditorPresenter implements EditorContract.Presenter, DatabaseSubscr
         model.readFromDatabase(this);
         float textSize = Float.parseFloat(model.getSharedPreferences().getString("editor_font_size", "16"));
         view.setTextSize(textSize);
-        initialiseText();
     }
 
+    @Override
+    public void onNoteRetrieve(NoteEntry note) {
+        view.initialiseText(note.text);
+    }
+
+    @Override
     public void initialiseText() {
-        model.readNoteFromDatabase(noteId);
-        view.initialiseText(oldText);
+        model.readNoteFromDatabase(this, noteId);
     }
 
     @Override

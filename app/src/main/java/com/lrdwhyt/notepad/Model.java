@@ -3,6 +3,7 @@ package com.lrdwhyt.notepad;
 import android.content.SharedPreferences;
 
 import com.lrdwhyt.notepad.dbtasks.InsertNewNote;
+import com.lrdwhyt.notepad.dbtasks.ReadNoteById;
 import com.lrdwhyt.notepad.dbtasks.RetrieveNotes;
 import com.lrdwhyt.notepad.dbtasks.UpdateNote;
 
@@ -28,6 +29,11 @@ public class Model {
 
     public void writeToDBNew(DatabaseSubscriber dbs, long noteId, String text) {
         UpdateNote dbTask = new UpdateNote(dbh, noteId, text);
+        dbTask.execute();
+    }
+
+    public void readNoteFromDatabase(DatabaseSubscriber dbs, long noteId) {
+        ReadNoteById dbTask = new ReadNoteById(dbh, dbs, noteId);
         dbTask.execute();
     }
 

@@ -1,9 +1,5 @@
 package com.lrdwhyt.notepad;
 
-/**
- * Created by lrdwh on 2017-10-28.
- */
-
 public interface EditorContract {
 
     interface View {
@@ -17,6 +13,7 @@ public interface EditorContract {
 
         void updateNote(String text);
         void setNoteId(long noteId);
+        void initialiseText();
 
     }
 

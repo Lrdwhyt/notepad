@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">note.txt</string>
-    <string name="title_activity_main">notes.txt</string>
+    <string name="app_name">notepad</string>
+    <string name="title_activity_main">notepad</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

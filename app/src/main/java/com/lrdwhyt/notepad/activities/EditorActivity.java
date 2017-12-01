@@ -43,6 +43,7 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
             if (getIntent().getExtras().get("noteId") != null) {
                 long noteId = Long.parseLong(getIntent().getExtras().getString("noteId"));
                 presenter.setNoteId(noteId);
+                presenter.initialiseText();
             }
         }
 
