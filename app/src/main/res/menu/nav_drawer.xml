@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/nav_overview_group">
+        <item
+            android:icon="@drawable/ic_note_black_24dp"
+            android:id="@+id/nav_overview"
+            android:checkable="true"
+            android:title="@string/str_all_notes" />
+    </group>
+
+    <group android:id="@+id/nav_trashcan">
+        <item
+            android:icon="@drawable/ic_delete_black_24dp"
+            android:title="@string/str_trashcan" />
+    </group>
+
+    <group android:id="@+id/nav_settings_group">
+        <item
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="@string/str_settings"
+            android:id="@+id/nav_settings"/>
+    </group>
+
+    <item
+        android:id="@+id/drawer_tags"
+        android:title="@string/str_tags">
+        <menu>
+            <item
+                android:icon="@drawable/ic_add_24dp"
+                android:orderInCategory="1"
+                android:title="@string/str_add_tag" />
+        </menu>
+    </item>
+
+</menu>

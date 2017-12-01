@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">note.txt</string>
+    <string name="title_activity_main">notes.txt</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="pref_name_language">Language</string>
+    <string name="pref_theme">Theme</string>
+    <string name="str_delete">Delete</string>
+
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="pref_font_size">
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+        <item>22</item>
+        <item>24</item>
+    </string-array>
+
+    <string-array name="pref_language_values">
+        <item></item>
+        <item>en_UK</item>
+        <item>en_US</item>
+        <item>ja</item>
+        <item>ko</item>
+        <item>zh_CN</item>
+        <item>zh_TW</item>
+    </string-array>
+
+    <string-array name="pref_languages">
+        <item>@string/str_default</item>
+        <item>English (UK)</item>
+        <item>English (US)</item>
+        <item>日本語</item>
+        <item>한국어</item>
+        <item>中文(简体)</item>
+        <item>中文(繁體)</item>
+    </string-array>
+    <string name="str_default">Default</string>
+    <string name="str_font_size">Font size</string>
+    <string name="str_settings">Settings</string>
+    <string name="str_trashcan">Trashcan</string>
+    <string name="str_tags">Tags</string>
+    <string name="str_add_tag">Add tag</string>
+    <string name="str_all_notes">All notes</string>
+    <string name="str_general">General</string>
+    <string name="str_search">Search</string>
+    <string name="str_action_tag">Tag</string>
+    <string name="str_activity_editor">Note editor</string>
+    <string name="str_line_numbers">Line numbers</string>
+    <string name="str_automatically_sync_database">Automatically sync database</string>
+    <string name="str_columns">Columns</string>
+    <string name="str_save_backup">Save backup</string>
+
+    <string-array name="pref_number_columns">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="pref_default_sort_entries">
+        <item>Date (descending)</item>
+        <item>Date (ascending)</item>
+        <item>Alphabetic (descending)</item>
+        <item>Alphabetic (ascending)</item>
+    </string-array>
+
+    <string-array name="pref_default_sort_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="pref_display_mode_entries">
+        <item>Compact</item>
+        <item>Normal</item>
+        <item>Spacious</item>
+    </string-array>
+
+    <string-array name="pref_display_mode_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="pref_theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
+    <string-array name="pref_theme_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

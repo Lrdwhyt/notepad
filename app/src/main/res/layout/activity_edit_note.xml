@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lrdwhyt.notepad.activities.EditorActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintBottom_toTopOf="@+id/scrollText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/abl">
+
+        <com.lrdwhyt.notepad.views.NumberedEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.lrdwhyt.notepad.views.LineNumberGutterView
+                android:id="@+id/lineNumberView"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start" />
+
+            <com.lrdwhyt.notepad.views.DynamicEditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:background="@android:color/transparent"
+                android:gravity="top"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textMultiLine"
+                android:linksClickable="true"
+                android:paddingBottom="16dp"
+                android:paddingEnd="15dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="15dp"
+                android:paddingStart="0dp"
+                android:paddingTop="16dp"
+                android:saveEnabled="true"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                android:textSize="16sp" />
+
+        </com.lrdwhyt.notepad.views.NumberedEditText>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

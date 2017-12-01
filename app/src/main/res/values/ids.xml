@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="tags" type="id"/>
+    <item name="tags0" type="id"/>
+    <item name="tags1" type="id"/>
+    <item name="tags2" type="id"/>
+    <item name="nav_settings" type="id"/>
+
+</resources>

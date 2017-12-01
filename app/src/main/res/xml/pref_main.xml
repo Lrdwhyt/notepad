@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Notebook">
+
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/pref_number_columns"
+            android:entryValues="@array/pref_number_columns"
+            android:icon="@drawable/ic_view_column_black_24dp"
+            android:key="pref_number_columns"
+            android:summary="%s"
+            android:title="@string/str_columns" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_default_sort_entries"
+            android:entryValues="@array/pref_default_sort_values"
+            android:icon="@drawable/ic_sort_black_24dp"
+            android:key="pref_default_sort"
+            android:summary="%s"
+            android:title="Default sort" />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:entries="@array/pref_display_mode_entries"
+            android:entryValues="@array/pref_display_mode_values"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:key="pref_display_mode"
+            android:summary="%s"
+            android:title="Display mode" />
+
+        <ListPreference
+            android:entries="@array/pref_font_size"
+            android:entryValues="@array/pref_font_size"
+            android:icon="@drawable/ic_format_size_black_24dp"
+            android:defaultValue="14"
+            android:key="notebook_font_size"
+            android:summary="%s"
+            android:title="@string/str_font_size" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Editor">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_format_list_numbered_black_24dp"
+            android:key="pref_line_numbers"
+            android:title="@string/str_line_numbers" />
+
+        <ListPreference
+            android:defaultValue="16"
+            android:entries="@array/pref_font_size"
+            android:entryValues="@array/pref_font_size"
+            android:icon="@drawable/ic_format_size_black_24dp"
+            android:key="editor_font_size"
+            android:summary="%s"
+            android:title="@string/str_font_size" />
+
+        <ListPreference
+            android:icon="@drawable/ic_font_download_black_24dp"
+            android:title="Font" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/str_general">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_theme_entries"
+            android:entryValues="@array/pref_theme_values"
+            android:icon="@drawable/ic_color_lens_black_24dp"
+            android:key="pref_theme"
+            android:summary="%s"
+            android:title="@string/pref_theme" />
+
+        <ListPreference
+            android:defaultValue=""
+            android:entries="@array/pref_languages"
+            android:entryValues="@array/pref_language_values"
+            android:icon="@drawable/ic_language_24dp"
+            android:key="pref_language"
+            android:summary="%s"
+            android:title="@string/pref_name_language" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/str_tags">
+
+        <Preference
+            android:icon="@drawable/ic_label_outline_black_24dp"
+            android:key="pref_manage_tags"
+            android:title="Manage tags" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Storage">
+
+        <SwitchPreference
+            android:icon="@drawable/ic_backup_black_24dp"
+            android:title="@string/str_automatically_sync_database" />
+
+        <Preference
+            android:icon="@drawable/ic_archive_black_24dp"
+            android:title="@string/str_save_backup" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

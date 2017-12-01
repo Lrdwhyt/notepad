@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">note.txt</string>
+    <string name="pref_name_language">言語</string>
+    <string name="pref_theme">テーマ</string>
+    <string name="str_delete">削除</string>
+    <string name="str_default">既定</string>
+    <string name="str_font_size">フォントサイズ</string>
+    <string name="str_trashcan">ゴミ箱</string>
+    <string name="str_tags">タグ</string>
+    <string name="str_settings">設定</string>
+    <string name="str_all_notes">ノート一覧</string>
+    <string name="str_add_tag">タグを追加</string>
+    <string name="str_line_numbers">行番号</string>
+    <string name="str_action_tag">タグ</string>
+    <string name="str_automatically_sync_database">データベースを自動的に同期する</string>
+    <string name="str_columns">列</string>
+    <string name="str_save_backup">バックアップを保存</string>
+</resources>

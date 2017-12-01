@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">note.txt</string>
+    <string name="str_settings">설정</string>
+    <string name="pref_name_language">언어</string>
+    <string name="str_delete">삭제</string>
+</resources>
