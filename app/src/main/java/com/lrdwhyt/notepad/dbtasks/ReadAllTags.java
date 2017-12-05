@@ -27,7 +27,7 @@ public class ReadAllTags extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.query(NoteDBContract.Tags.TABLE_NAME, new String[]{NoteDBContract.Tags._ID, NoteDBContract.Tags.COLUMN_NAME}, null, null, null, null, "NAME desc");
+        selectedNoteEntries = db.query(NoteDBContract.Tags.TABLE_NAME, new String[]{NoteDBContract.Tags._ID, NoteDBContract.Tags.COLUMN_NAME}, null, null, null, null, "name asc");
         return null;
     }
 

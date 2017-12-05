@@ -7,7 +7,7 @@ public interface NotesContract {
     interface View {
 
         void updateNotes(List l);
-
+        void populateDrawer(List<String> drawerItems);
         void setNumberColumns(int i);
 
     }
@@ -15,8 +15,8 @@ public interface NotesContract {
     interface Presenter {
 
         void attachView(NotesContract.View view);
-
         void onDeleteSelectedNotesClick(List list);
+        List<String> getTagList();
 
     }
 

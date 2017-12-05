@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -130,7 +131,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         navigationView.setNavigationItemSelectedListener(onisl);
 
         navigationView.inflateMenu(R.menu.nav_drawer);
-        populateDrawer(navigationView);
 
         dldl = new DrawerLayout.DrawerListener() {
             @Override
@@ -155,8 +155,12 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         navigationView.setCheckedItem(R.id.nav_overview);
     }
 
-    public void populateDrawer(NavigationView navigationView) {
-        navigationView.getMenu().findItem(R.id.drawer_tags).getSubMenu().add(0, 0, 0, "Tags 7");
+    @Override
+    public void populateDrawer(List<String> drawerItems) {
+        SubMenu sm = navigationView.getMenu().findItem(R.id.drawer_tags).getSubMenu();
+        for (String item : drawerItems) {
+            sm.add(0, 0, 0, item);
+        }
     }
 
     @Override

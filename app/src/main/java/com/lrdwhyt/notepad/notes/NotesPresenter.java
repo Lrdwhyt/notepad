@@ -4,12 +4,14 @@ import com.lrdwhyt.notepad.DatabaseSubscriber;
 import com.lrdwhyt.notepad.Model;
 import com.lrdwhyt.notepad.NoteEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscriber {
 
     private Model model;
     private NotesContract.View view;
+    List<String> tagNameList = new ArrayList<>();
 
     public NotesPresenter(Model model, NotesContract.View view) {
         this.model = model;
@@ -17,11 +19,13 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
         model.readNotesFromDB(this);
         int numberColumns = Integer.parseInt(model.getSharedPreferences().getString("pref_number_columns", "2"));
         view.setNumberColumns(numberColumns);
+        model.readTagList(this);
     }
 
     @Override
     public void onReadMultipleTags(List tagList) {
-
+        tagNameList = tagList;
+        view.populateDrawer(tagList);
     }
 
     @Override
@@ -58,5 +62,10 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     @Override
     public void onReadMultipleNotes(List results) {
         view.updateNotes(results);
+    }
+
+    @Override
+    public List<String> getTagList() {
+        return tagNameList;
     }
 }
