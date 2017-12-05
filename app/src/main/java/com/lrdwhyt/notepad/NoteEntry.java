@@ -7,7 +7,6 @@ public class NoteEntry {
     public long _id;
     public String text;
     public long date;
-    public List tags;
 
     public NoteEntry() {
         this.text = "";

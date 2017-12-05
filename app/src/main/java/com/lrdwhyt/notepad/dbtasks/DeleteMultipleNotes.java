@@ -34,7 +34,7 @@ public class DeleteMultipleNotes extends AsyncTask<Void, Void, Void> {
         db.execSQL("DELETE FROM " + NoteDB.Notes.TABLE_NAME +
                 " WHERE " + NoteDB.Notes._ID + " IN " + commaSeparated);
         db.execSQL("DELETE FROM " + NoteDB.TagRecords.TABLE_NAME +
-                        " WHERE " + NoteDB.TagRecords.COLUMN_NOTE + " IN " + commaSeparated);
+                " WHERE " + NoteDB.TagRecords.COLUMN_NOTE + " IN " + commaSeparated);
         return null;
     }
 

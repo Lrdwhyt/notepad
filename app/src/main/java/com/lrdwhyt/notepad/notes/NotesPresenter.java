@@ -16,7 +16,7 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     public NotesPresenter(Model model, NotesContract.View view) {
         this.model = model;
         this.view = view;
-        model.readNotesFromDB(this);
+        browseAll();
         int numberColumns = Integer.parseInt(model.getSharedPreferences().getString("pref_number_columns", "2"));
         view.setNumberColumns(numberColumns);
         model.readTagList(this);
@@ -46,13 +46,9 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
         this.view = view;
     }
 
-    public void onDbChange() {
-        model.readNotesFromDB(this);
-    }
-
     @Override
     public void onDeleteMultipleNotes() {
-        model.readNotesFromDB(this);
+        browseAll();
     }
 
     @Override

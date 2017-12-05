@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import com.lrdwhyt.notepad.DatabaseManager;
 import com.lrdwhyt.notepad.Model;
 import com.lrdwhyt.notepad.NoteAdapter;
+import com.lrdwhyt.notepad.NoteEntry;
 import com.lrdwhyt.notepad.activities.EditorActivity;
 import com.lrdwhyt.notepad.activities.SettingsActivity;
 import com.lrdwhyt.notepad.R;
@@ -165,6 +166,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         for (final String tagName : drawerItems) {
             MenuItem mi = sm.add(0, 0, 0, tagName);
             mi.setCheckable(true);
+            mi.setIcon(R.drawable.ic_label_outline_black_24dp);
             mi.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -317,7 +319,7 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     }
 
     @Override
-    public void updateNotes(List newList) {
+    public void updateNotes(List<NoteEntry> newList) {
         noteLongClickListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -328,7 +330,8 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         int maxWidth = Math.max(getResources().getDisplayMetrics().widthPixels,
                 getResources().getDisplayMetrics().heightPixels); // Why? To prevent it from becoming too small?
         NoteAdapter newAdapter = new NoteAdapter(newList, maxWidth, noteLongClickListener);
-        noteContainer.setAdapter(newAdapter);
+        noteContainer = (RecyclerView) findViewById(R.id.recyclerView);
+        noteContainer.swapAdapter(newAdapter, false);
     }
 
 }
