@@ -30,6 +30,7 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
 
     @Override
     public void onDeleteSelectedNotesClick(List noteIds) {
+        model.deleteNotes(this, noteIds);
     }
 
     @Override
@@ -46,6 +47,11 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     }
 
     public void onDbChange() {
+        model.readNotesFromDB(this);
+    }
+
+    @Override
+    public void onDeleteMultipleNotes() {
         model.readNotesFromDB(this);
     }
 

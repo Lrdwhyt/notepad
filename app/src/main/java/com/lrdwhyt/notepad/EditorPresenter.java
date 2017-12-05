@@ -100,6 +100,11 @@ public class EditorPresenter implements EditorContract.Presenter, DatabaseSubscr
     }
 
     @Override
+    public void onDeleteMultipleNotes() {
+
+    }
+
+    @Override
     public void updateTags(boolean[] tags) {
         for (int i = 0; i < tags.length; ++i) {
             if (tags[i] != tagStateList[i]) {

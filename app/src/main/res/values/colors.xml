@@ -3,4 +3,6 @@
     <color name="colorPrimary">#ffa000</color>
     <color name="colorPrimaryDark">#ff3d00</color>
     <color name="colorAccent">#546e7a</color>
+    <color name="normalCard">#ffffff</color>
+    <color name="selectedCard">#cccccc</color>
 </resources>

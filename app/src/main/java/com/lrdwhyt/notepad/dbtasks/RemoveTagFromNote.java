@@ -25,7 +25,7 @@ public class RemoveTagFromNote extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getWritableDatabase();
-        db.rawQuery("DELETE FROM " + NoteDBContract.TagRecords.TABLE_NAME +
+        db.execSQL("DELETE FROM " + NoteDBContract.TagRecords.TABLE_NAME +
                 " WHERE " + NoteDBContract.TagRecords.COLUMN_NOTE + " = ?" +
                 " AND " + NoteDBContract.TagRecords.COLUMN_TAG + " = (SELECT _id FROM " + NoteDBContract.Tags.TABLE_NAME + " WHERE " + NoteDBContract.Tags.COLUMN_NAME + " = ?)", new String[] { String.valueOf(noteId), tag });
         return null;

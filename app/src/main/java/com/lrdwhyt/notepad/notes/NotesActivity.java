@@ -195,7 +195,8 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         int itemId = item.getItemId();
 
         if (itemId == R.id.action_delete) {
-            presenter.onDeleteSelectedNotesClick(selectedNotes);
+            presenter.onDeleteSelectedNotesClick(new ArrayList(selectedNotes));
+            exitSelectionMode();
             return true;
         }
 
@@ -279,11 +280,13 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     }
 
     public void markNoteAsSelected(View v) {
-        v.setBackgroundColor(getResources().getColor(R.color.cardview_dark_background));
+        v.findViewById(R.id.text_body).setBackgroundColor(getResources().getColor(R.color.selectedCard));
+        v.setBackgroundColor(getResources().getColor(R.color.selectedCard));
     }
 
     public void unmarkNoteAsSelected(View v) {
-        v.setBackgroundColor(getResources().getColor(R.color.cardview_light_background));
+        v.findViewById(R.id.text_body).setBackgroundColor(getResources().getColor(R.color.normalCard));
+        v.setBackgroundColor(getResources().getColor(R.color.normalCard));
     }
 
     public void addSelectedNote(View v) {
@@ -298,11 +301,6 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
         selectedNotes.remove(id);
         selectedNoteViews.remove(v);
         unmarkNoteAsSelected(v);
-    }
-
-    public boolean toggleSelectionMode() {
-        isSelectionMode = !isSelectionMode;
-        return isSelectionMode;
     }
 
     @Override

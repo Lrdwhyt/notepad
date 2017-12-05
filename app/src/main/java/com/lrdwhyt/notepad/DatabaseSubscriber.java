@@ -10,5 +10,6 @@ public interface DatabaseSubscriber {
     void onReadMultipleTags(List<String> tagList);
     void onInsertSingleTag();
     void onReadNoteTags(List results);
+    void onDeleteMultipleNotes();
 
 }

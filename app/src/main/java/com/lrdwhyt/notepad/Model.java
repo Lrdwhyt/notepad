@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.lrdwhyt.notepad.dbtasks.AddTagToNote;
 import com.lrdwhyt.notepad.dbtasks.CreateTag;
+import com.lrdwhyt.notepad.dbtasks.DeleteMultipleNotes;
 import com.lrdwhyt.notepad.dbtasks.InsertNewNote;
 import com.lrdwhyt.notepad.dbtasks.ReadAllTags;
 import com.lrdwhyt.notepad.dbtasks.ReadNoteById;
@@ -11,6 +12,8 @@ import com.lrdwhyt.notepad.dbtasks.ReadNoteTags;
 import com.lrdwhyt.notepad.dbtasks.RemoveTagFromNote;
 import com.lrdwhyt.notepad.dbtasks.RetrieveNotes;
 import com.lrdwhyt.notepad.dbtasks.UpdateNote;
+
+import java.util.List;
 
 public class Model {
 
@@ -64,6 +67,11 @@ public class Model {
 
     public void removeTag(DatabaseSubscriber dbs, long noteId, String tag) {
         RemoveTagFromNote dbTask = new RemoveTagFromNote(dbh, dbs, noteId, tag);
+        dbTask.execute();
+    }
+
+    public void deleteNotes(DatabaseSubscriber dbs, List notes) {
+        DeleteMultipleNotes dbTask = new DeleteMultipleNotes(dbh, dbs, notes);
         dbTask.execute();
     }
 
