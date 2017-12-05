@@ -9,16 +9,16 @@ import com.lrdwhyt.notepad.DatabaseSubscriber;
 import com.lrdwhyt.notepad.NoteDBContract;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
-public class InsertNewNote extends AsyncTask<Void, Void, Void> {
+public class CreateTag extends AsyncTask<Void, Void, Void> {
 
     private DatabaseManager dbh;
     private DatabaseSubscriber dbs;
-    private long noteId;
-    private String text;
+    private long tagId;
+    private String tag;
 
-    public InsertNewNote(DatabaseManager dbh, String text, DatabaseSubscriber dbs) {
+    public CreateTag(DatabaseManager dbh, String tag, DatabaseSubscriber dbs) {
         this.dbh = dbh;
-        this.text = text;
+        this.tag = tag;
         this.dbs = dbs;
     }
 
@@ -26,15 +26,14 @@ public class InsertNewNote extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getWritableDatabase();
         ContentValues newEntry = new ContentValues();
-        newEntry.put(NoteDBContract.Notes.COLUMN_TEXT, text);
-        newEntry.put(NoteDBContract.Notes.COLUMN_DATE, String.valueOf(System.currentTimeMillis()));
-        noteId = db.insert(NoteDBContract.Notes.TABLE_NAME, null, newEntry);
+        newEntry.put(NoteDBContract.Tags.COLUMN_NAME, tag);
+        tagId = db.insert(NoteDBContract.Tags.TABLE_NAME, null, newEntry);
         return null;
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        dbs.onInsertSingleNote(noteId);
+        dbs.onInsertSingleTag();
         super.onPostExecute(aVoid);
     }
 

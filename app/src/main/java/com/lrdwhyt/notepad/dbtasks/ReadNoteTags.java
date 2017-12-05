@@ -10,14 +10,17 @@ import com.lrdwhyt.notepad.NoteDBContract;
 import com.lrdwhyt.notepad.NoteEntry;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
-public class ReadNoteById extends AsyncTask<Void, Void, Void> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReadNoteTags extends AsyncTask<Void, Void, Void> {
 
     private DatabaseManager dbh;
     private Cursor selectedNoteEntries;
     private DatabaseSubscriber dbs;
     private long id;
 
-    public ReadNoteById(DatabaseManager dbh, DatabaseSubscriber dbs, long id) {
+    public ReadNoteTags(DatabaseManager dbh, DatabaseSubscriber dbs, long id) {
         this.dbh = dbh;
         this.dbs = dbs;
         this.id = id;
@@ -26,18 +29,19 @@ public class ReadNoteById extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.query(NoteDBContract.Notes.TABLE_NAME, new String[]{NoteDBContract.Notes._ID, NoteDBContract.Notes.COLUMN_TEXT, NoteDBContract.Notes.COLUMN_DATE}, "_id = ?", new String[] { String.valueOf(id) }, null, null, null);
+        selectedNoteEntries = db.rawQuery("SELECT " + NoteDBContract.Tags.COLUMN_NAME + " FROM " + NoteDBContract.TagRecords.TABLE_NAME + " INNER JOIN " + NoteDBContract.Tags.TABLE_NAME + " WHERE " + NoteDBContract.TagRecords.COLUMN_NOTE + " = ? AND " + NoteDBContract.TagRecords.COLUMN_TAG + " = " + NoteDBContract.Tags._ID, new String[]{ String.valueOf(id) });
         return null;
     }
 
     @Override
     protected void onPostExecute(Void _void) {
         // Do something with selectedNoteEntries
-        NoteEntry result;
-        selectedNoteEntries.moveToFirst();
-        result = new NoteEntry(Long.parseLong(selectedNoteEntries.getString(0)), selectedNoteEntries.getString(1), selectedNoteEntries.getLong(2));
+        List<String> results = new ArrayList<>();
+        while (selectedNoteEntries.moveToNext()) {
+            results.add(selectedNoteEntries.getString(0));
+        }
         selectedNoteEntries.close();
-        dbs.onReadSingleNote(result);
+        dbs.onReadNoteTags(results);
         super.onPostExecute(_void);
     }
 

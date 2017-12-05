@@ -39,7 +39,7 @@ public class RetrieveNotes extends AsyncTask<Void, Void, Void> {
             results.add(new NoteEntry(Long.parseLong(selectedNoteEntries.getString(0)), selectedNoteEntries.getString(1), selectedNoteEntries.getLong(2)));
         }
         selectedNoteEntries.close();
-        dbs.onDBReadExecute(results);
+        dbs.onReadMultipleNotes(results);
         super.onPostExecute(_void);
     }
 

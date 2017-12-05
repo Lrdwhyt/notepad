@@ -34,4 +34,15 @@ public final class NoteDBContract {
                 COLUMN_NAME + " TEXT)";
     }
 
+    public static class TagRecords implements BaseColumns {
+        public static final String TABLE_NAME = "tagrecords";
+        public static final String COLUMN_NOTE = "note";
+        public static final String COLUMN_TAG = "tag";
+
+        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                TABLE_NAME + " (" +
+                COLUMN_NOTE + " INTEGER, " +
+                COLUMN_TAG + " INTEGER)";
+    }
+
 }

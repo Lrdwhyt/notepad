@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
 
-    public static final String DATABASE_NAME = "notes.txt";
+    public static final String DATABASE_NAME = "notepad";
     public static final int DATABASE_VERSION = 1;
 
     public SQLiteHelper(Context context) {
@@ -22,12 +22,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(NoteDBContract.Notes.CREATE_TABLE);
         db.execSQL(NoteDBContract.Tags.CREATE_TABLE);
+        db.execSQL(NoteDBContract.TagRecords.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.Notes.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.Tags.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.TagRecords.TABLE_NAME);
         onCreate(db);
     }
 }

@@ -10,34 +10,36 @@ import com.lrdwhyt.notepad.NoteDBContract;
 import com.lrdwhyt.notepad.NoteEntry;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
-public class ReadNoteById extends AsyncTask<Void, Void, Void> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ReadAllTags extends AsyncTask<Void, Void, Void> {
 
     private DatabaseManager dbh;
     private Cursor selectedNoteEntries;
     private DatabaseSubscriber dbs;
-    private long id;
 
-    public ReadNoteById(DatabaseManager dbh, DatabaseSubscriber dbs, long id) {
+    public ReadAllTags(DatabaseManager dbh, DatabaseSubscriber dbs) {
         this.dbh = dbh;
         this.dbs = dbs;
-        this.id = id;
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.query(NoteDBContract.Notes.TABLE_NAME, new String[]{NoteDBContract.Notes._ID, NoteDBContract.Notes.COLUMN_TEXT, NoteDBContract.Notes.COLUMN_DATE}, "_id = ?", new String[] { String.valueOf(id) }, null, null, null);
+        selectedNoteEntries = db.query(NoteDBContract.Tags.TABLE_NAME, new String[]{NoteDBContract.Tags._ID, NoteDBContract.Tags.COLUMN_NAME}, null, null, null, null, "NAME desc");
         return null;
     }
 
     @Override
     protected void onPostExecute(Void _void) {
         // Do something with selectedNoteEntries
-        NoteEntry result;
-        selectedNoteEntries.moveToFirst();
-        result = new NoteEntry(Long.parseLong(selectedNoteEntries.getString(0)), selectedNoteEntries.getString(1), selectedNoteEntries.getLong(2));
+        List<String> results = new ArrayList<>();
+        while (selectedNoteEntries.moveToNext()) {
+            results.add(selectedNoteEntries.getString(1));
+        }
         selectedNoteEntries.close();
-        dbs.onReadSingleNote(result);
+        dbs.onReadMultipleTags(results);
         super.onPostExecute(_void);
     }
 

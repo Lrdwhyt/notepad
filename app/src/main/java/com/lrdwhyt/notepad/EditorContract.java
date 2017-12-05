@@ -14,6 +14,10 @@ public interface EditorContract {
         void updateNote(String text);
         void setNoteId(long noteId);
         void initialiseText();
+        String[] getTagNames();
+        boolean[] getTagStates();
+        void createTag(String tag);
+        void updateTags(boolean[] tags);
 
     }
 

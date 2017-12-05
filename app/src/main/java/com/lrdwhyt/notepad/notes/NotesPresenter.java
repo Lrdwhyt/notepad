@@ -14,9 +14,14 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     public NotesPresenter(Model model, NotesContract.View view) {
         this.model = model;
         this.view = view;
-        model.readFromDatabase(this);
+        model.readNotesFromDB(this);
         int numberColumns = Integer.parseInt(model.getSharedPreferences().getString("pref_number_columns", "2"));
         view.setNumberColumns(numberColumns);
+    }
+
+    @Override
+    public void onReadMultipleTags(List tagList) {
+
     }
 
     @Override
@@ -24,11 +29,11 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     }
 
     @Override
-    public void onNoteRetrieve(NoteEntry note) {
+    public void onReadSingleNote(NoteEntry note) {
     }
 
     @Override
-    public void onDBInsertNew(long id) {
+    public void onInsertSingleNote(long id) {
     }
 
     @Override
@@ -37,11 +42,21 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     }
 
     public void onDbChange() {
-        model.readFromDatabase(this);
+        model.readNotesFromDB(this);
     }
 
     @Override
-    public void onDBReadExecute(List results) {
+    public void onReadNoteTags(List results) {
+
+    }
+
+    @Override
+    public void onInsertSingleTag() {
+
+    }
+
+    @Override
+    public void onReadMultipleNotes(List results) {
         view.updateNotes(results);
     }
 }

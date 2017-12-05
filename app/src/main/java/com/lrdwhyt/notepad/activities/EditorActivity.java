@@ -1,13 +1,16 @@
 package com.lrdwhyt.notepad.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.lrdwhyt.notepad.DatabaseManager;
@@ -16,6 +19,7 @@ import com.lrdwhyt.notepad.EditorPresenter;
 import com.lrdwhyt.notepad.Model;
 import com.lrdwhyt.notepad.R;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class EditorActivity extends AppCompatActivity implements EditorContract.View {
@@ -85,12 +89,62 @@ public class EditorActivity extends AppCompatActivity implements EditorContract.
             saveToDatabase();
             return true;
         } else if (itemId == R.id.action_tag) {
-            // Open dialogue to edit tags
+            openTagSelectionDialog();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private void openTagSelectionDialog() {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        String[] tagNames = presenter.getTagNames();
+        boolean[] tagStates = presenter.getTagStates();
+        final boolean[] tagSelections = Arrays.copyOf(tagStates, tagStates.length);
+        final boolean[] checkedTags = tagSelections;
+        adb.setTitle("Tag");
+        adb.setMultiChoiceItems(tagNames, tagSelections, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                checkedTags[which] = isChecked;
+            }
+        });
+        adb.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.updateTags(checkedTags);
+            }
+        });
+        adb.setNeutralButton("Add tag", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog ad = adb.create();
+        ad.show();
+        ad.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewTagDialog();
+            }
+        });
+    }
+
+    private void openNewTagDialog() {
+        AlertDialog.Builder bdb = new AlertDialog.Builder(this);
+        bdb.setTitle("Add tag");
+        final EditText et = new EditText(this);
+        bdb.setView(et);
+        bdb.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String newTag = et.getText().toString();
+                presenter.createTag(newTag);
+                // Restart tag dialog
+            }
+        });
+        bdb.create().show();
     }
 
     @Override
