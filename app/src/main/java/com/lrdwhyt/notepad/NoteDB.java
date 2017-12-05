@@ -6,9 +6,9 @@ import android.provider.BaseColumns;
  * Created by lrdwh on 2017-09-03.
  */
 
-public final class NoteDBContract {
+public final class NoteDB {
 
-    private NoteDBContract() {}
+    private NoteDB() {}
 
     public static class Notes implements BaseColumns {
         public static final String TABLE_NAME = "notes";

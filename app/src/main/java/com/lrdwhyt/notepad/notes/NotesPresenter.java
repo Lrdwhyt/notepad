@@ -71,7 +71,17 @@ public class NotesPresenter implements NotesContract.Presenter, DatabaseSubscrib
     }
 
     @Override
+    public void browseAll() {
+        model.readNotesFromDB(this);
+    }
+
+    @Override
     public List<String> getTagList() {
         return tagNameList;
+    }
+
+    @Override
+    public void browseTag(String tagName) {
+        model.readNotesByTag(this, tagName);
     }
 }

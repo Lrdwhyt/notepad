@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
 import com.lrdwhyt.notepad.DatabaseManager;
-import com.lrdwhyt.notepad.NoteDBContract;
+import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
 public class UpdateNote extends AsyncTask<Void, Void, Void> {
@@ -24,9 +24,9 @@ public class UpdateNote extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbm.getContext()).getWritableDatabase();
         ContentValues currentEntry = new ContentValues();
-        currentEntry.put(NoteDBContract.Notes.COLUMN_TEXT, text);
-        currentEntry.put(NoteDBContract.Notes.COLUMN_DATE, String.valueOf(System.currentTimeMillis()));
-        db.update(NoteDBContract.Notes.TABLE_NAME, currentEntry, "_id = ?", new String[]{Long.toString(noteId)});
+        currentEntry.put(NoteDB.Notes.COLUMN_TEXT, text);
+        currentEntry.put(NoteDB.Notes.COLUMN_DATE, String.valueOf(System.currentTimeMillis()));
+        db.update(NoteDB.Notes.TABLE_NAME, currentEntry, "_id = ?", new String[]{Long.toString(noteId)});
         return null;
     }
 

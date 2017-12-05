@@ -9,6 +9,7 @@ import com.lrdwhyt.notepad.dbtasks.InsertNewNote;
 import com.lrdwhyt.notepad.dbtasks.ReadAllTags;
 import com.lrdwhyt.notepad.dbtasks.ReadNoteById;
 import com.lrdwhyt.notepad.dbtasks.ReadNoteTags;
+import com.lrdwhyt.notepad.dbtasks.ReadNotesByTag;
 import com.lrdwhyt.notepad.dbtasks.RemoveTagFromNote;
 import com.lrdwhyt.notepad.dbtasks.RetrieveNotes;
 import com.lrdwhyt.notepad.dbtasks.UpdateNote;
@@ -27,6 +28,11 @@ public class Model {
 
     public void readNotesFromDB(DatabaseSubscriber dbn) {
         RetrieveNotes dbTask = new RetrieveNotes(dbh, dbn);
+        dbTask.execute();
+    }
+
+    public void readNotesByTag(DatabaseSubscriber dbs, String tag) {
+        ReadNotesByTag dbTask = new ReadNotesByTag(dbh, dbs, tag);
         dbTask.execute();
     }
 

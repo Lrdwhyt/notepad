@@ -120,8 +120,12 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.nav_settings) {
+                if (itemId == R.id.nav_overview) {
+                    presenter.browseAll();
+                } else if (itemId == R.id.nav_settings) {
                     drawerClosedIntent = new Intent(NotesActivity.this, SettingsActivity.class);
+                } else {
+
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -158,8 +162,17 @@ public class NotesActivity extends AppCompatActivity implements NotesContract.Vi
     @Override
     public void populateDrawer(List<String> drawerItems) {
         SubMenu sm = navigationView.getMenu().findItem(R.id.drawer_tags).getSubMenu();
-        for (String item : drawerItems) {
-            sm.add(0, 0, 0, item);
+        for (final String tagName : drawerItems) {
+            MenuItem mi = sm.add(0, 0, 0, tagName);
+            mi.setCheckable(true);
+            mi.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    presenter.browseTag(tagName);
+                    navigationView.setCheckedItem(item.getItemId());
+                    return false;
+                }
+            });
         }
     }
 

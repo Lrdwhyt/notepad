@@ -17,6 +17,8 @@ public interface NotesContract {
         void attachView(NotesContract.View view);
         void onDeleteSelectedNotesClick(List list);
         List<String> getTagList();
+        void browseTag(String tagName);
+        void browseAll();
 
     }
 

@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.lrdwhyt.notepad.DatabaseManager;
 import com.lrdwhyt.notepad.DatabaseSubscriber;
-import com.lrdwhyt.notepad.NoteDBContract;
+import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.NoteEntry;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
@@ -26,7 +26,7 @@ public class ReadNoteById extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.query(NoteDBContract.Notes.TABLE_NAME, new String[]{NoteDBContract.Notes._ID, NoteDBContract.Notes.COLUMN_TEXT, NoteDBContract.Notes.COLUMN_DATE}, "_id = ?", new String[] { String.valueOf(id) }, null, null, null);
+        selectedNoteEntries = db.query(NoteDB.Notes.TABLE_NAME, new String[]{NoteDB.Notes._ID, NoteDB.Notes.COLUMN_TEXT, NoteDB.Notes.COLUMN_DATE}, "_id = ?", new String[] { String.valueOf(id) }, null, null, null);
         return null;
     }
 

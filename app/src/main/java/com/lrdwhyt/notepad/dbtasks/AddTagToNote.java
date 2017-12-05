@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 import com.lrdwhyt.notepad.DatabaseManager;
 import com.lrdwhyt.notepad.DatabaseSubscriber;
-import com.lrdwhyt.notepad.NoteDBContract;
+import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
 public class AddTagToNote extends AsyncTask<Void, Void, Void> {
@@ -25,9 +25,9 @@ public class AddTagToNote extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getWritableDatabase();
-        db.execSQL("INSERT INTO " + NoteDBContract.TagRecords.TABLE_NAME +
-                        " (" + NoteDBContract.TagRecords.COLUMN_NOTE + ", " + NoteDBContract.TagRecords.COLUMN_TAG + ")" +
-                        " SELECT ?, _id FROM " + NoteDBContract.Tags.TABLE_NAME + " WHERE " + NoteDBContract.Tags.COLUMN_NAME + " = ?", new String[] { String.valueOf(noteId), tag });
+        db.execSQL("INSERT INTO " + NoteDB.TagRecords.TABLE_NAME +
+                        " (" + NoteDB.TagRecords.COLUMN_NOTE + ", " + NoteDB.TagRecords.COLUMN_TAG + ")" +
+                        " SELECT ?, _id FROM " + NoteDB.Tags.TABLE_NAME + " WHERE " + NoteDB.Tags.COLUMN_NAME + " = ?", new String[] { String.valueOf(noteId), tag });
         return null;
     }
 

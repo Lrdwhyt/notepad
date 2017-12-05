@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.lrdwhyt.notepad.DatabaseManager;
 import com.lrdwhyt.notepad.DatabaseSubscriber;
-import com.lrdwhyt.notepad.NoteDBContract;
+import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
 public class InsertNewNote extends AsyncTask<Void, Void, Void> {
@@ -26,9 +26,9 @@ public class InsertNewNote extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getWritableDatabase();
         ContentValues newEntry = new ContentValues();
-        newEntry.put(NoteDBContract.Notes.COLUMN_TEXT, text);
-        newEntry.put(NoteDBContract.Notes.COLUMN_DATE, String.valueOf(System.currentTimeMillis()));
-        noteId = db.insert(NoteDBContract.Notes.TABLE_NAME, null, newEntry);
+        newEntry.put(NoteDB.Notes.COLUMN_TEXT, text);
+        newEntry.put(NoteDB.Notes.COLUMN_DATE, String.valueOf(System.currentTimeMillis()));
+        noteId = db.insert(NoteDB.Notes.TABLE_NAME, null, newEntry);
         return null;
     }
 

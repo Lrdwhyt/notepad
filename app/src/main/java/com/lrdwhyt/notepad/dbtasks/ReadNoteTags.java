@@ -6,8 +6,7 @@ import android.os.AsyncTask;
 
 import com.lrdwhyt.notepad.DatabaseManager;
 import com.lrdwhyt.notepad.DatabaseSubscriber;
-import com.lrdwhyt.notepad.NoteDBContract;
-import com.lrdwhyt.notepad.NoteEntry;
+import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.SQLiteHelper;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class ReadNoteTags extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.rawQuery("SELECT " + NoteDBContract.Tags.COLUMN_NAME + " FROM " + NoteDBContract.TagRecords.TABLE_NAME + " INNER JOIN " + NoteDBContract.Tags.TABLE_NAME + " WHERE " + NoteDBContract.TagRecords.COLUMN_NOTE + " = ? AND " + NoteDBContract.TagRecords.COLUMN_TAG + " = " + NoteDBContract.Tags._ID, new String[]{ String.valueOf(id) });
+        selectedNoteEntries = db.rawQuery("SELECT " + NoteDB.Tags.COLUMN_NAME + " FROM " + NoteDB.TagRecords.TABLE_NAME + " INNER JOIN " + NoteDB.Tags.TABLE_NAME + " WHERE " + NoteDB.TagRecords.COLUMN_NOTE + " = ? AND " + NoteDB.TagRecords.COLUMN_TAG + " = " + NoteDB.Tags._ID, new String[]{ String.valueOf(id) });
         return null;
     }
 

@@ -4,8 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
-import com.lrdwhyt.notepad.DatabaseSubscriber;
 import com.lrdwhyt.notepad.DatabaseManager;
+import com.lrdwhyt.notepad.DatabaseSubscriber;
 import com.lrdwhyt.notepad.NoteDB;
 import com.lrdwhyt.notepad.NoteEntry;
 import com.lrdwhyt.notepad.SQLiteHelper;
@@ -13,21 +13,28 @@ import com.lrdwhyt.notepad.SQLiteHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RetrieveNotes extends AsyncTask<Void, Void, Void> {
+public class ReadNotesByTag extends AsyncTask<Void, Void, Void> {
 
     private DatabaseManager dbh;
     private Cursor selectedNoteEntries;
     private DatabaseSubscriber dbs;
+    private String tag;
 
-    public RetrieveNotes(DatabaseManager dbh, DatabaseSubscriber dbs) {
+    public ReadNotesByTag(DatabaseManager dbh, DatabaseSubscriber dbs, String tag) {
         this.dbh = dbh;
         this.dbs = dbs;
+        this.tag = tag;
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         SQLiteDatabase db = new SQLiteHelper(dbh.getContext()).getReadableDatabase();
-        selectedNoteEntries = db.query(NoteDB.Notes.TABLE_NAME, new String[]{NoteDB.Notes._ID, NoteDB.Notes.COLUMN_TEXT, NoteDB.Notes.COLUMN_DATE}, null, null, null, null, "DATE desc", "200");
+        selectedNoteEntries = db.rawQuery("SELECT " + NoteDB.Notes.TABLE_NAME + "." + NoteDB.Notes._ID + ", " + NoteDB.Notes.TABLE_NAME + "." + NoteDB.Notes.COLUMN_TEXT + ", " + NoteDB.Notes.TABLE_NAME + "." + NoteDB.Notes.COLUMN_DATE +
+                " FROM " + NoteDB.Notes.TABLE_NAME +
+                " INNER JOIN " + NoteDB.Tags.TABLE_NAME + " ON tags._id = tagrecords.tag" +
+                " INNER JOIN " + NoteDB.TagRecords.TABLE_NAME + " ON tagrecords.note = notes._id" +
+                " WHERE tags.name = ?" +
+                " ORDER BY notes.date desc", new String[] { tag });
         return null;
     }
 

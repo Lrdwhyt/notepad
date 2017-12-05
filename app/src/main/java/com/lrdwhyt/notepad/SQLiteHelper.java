@@ -20,16 +20,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(NoteDBContract.Notes.CREATE_TABLE);
-        db.execSQL(NoteDBContract.Tags.CREATE_TABLE);
-        db.execSQL(NoteDBContract.TagRecords.CREATE_TABLE);
+        db.execSQL(NoteDB.Notes.CREATE_TABLE);
+        db.execSQL(NoteDB.Tags.CREATE_TABLE);
+        db.execSQL(NoteDB.TagRecords.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.Notes.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.Tags.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + NoteDBContract.TagRecords.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + NoteDB.Notes.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + NoteDB.Tags.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + NoteDB.TagRecords.TABLE_NAME);
         onCreate(db);
     }
 }
